@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAPSI - Romel Suarez | Portfolio</title>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: "Poppins";
+        }
+
+        html {
+            font-size: 60%;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bg-color: #080808;
+            --second-bg-color: #101005;
+            --text-color: white;
+            --main-color: #00ff51;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Glimmering Particle Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        #particles-js canvas {
+            display: block;
+            filter: blur(0.3px) brightness(1.2);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 4rem 12%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--main-color);
+            display: none;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        span {
+            color: var(--main-color);
+        }
+
+        .navbar a {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-left: 4rem;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover {
+            border-bottom: 3px solid var(--main-color);
+            color: var(--main-color);
+        }
+
+        .navbar a.active {
+            color: var(--main-color);
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        /* Project Details */
+        .project-details {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            padding-left: 10%;
+            padding-right: 10%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .project-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .project-image video {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(0, 255, 81, 0.4);
+            display: block;
+        }
+
+        .project-content {
+            flex: 1;
+            color: var(--text-color);
+        }
+
+        .project-content h1 {
+            font-size: 4.8rem;
+            font-weight: 700;
+            color: var(--main-color);
+            text-shadow: 0 0 12px var(--main-color);
+            margin-bottom: 20px;
+        }
+
+        .project-content p {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: #d1d1d1;
+            margin-bottom: 25px;
+        }
+
+        .project-content h3 {
+            margin-top: 25px;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
+            color: var(--main-color);
+            text-shadow: 0 0 10px var(--main-color);
+        }
+
+        .project-content ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .project-content ul li {
+            list-style-type: disc;
+            margin-bottom: 5px;
+            color: #cfcfcf;
+            font-size: 1.6rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--main-color);
+            box-shadow: 0 0 25px var(--main-color);
+            border-radius: 3rem;
+            font-size: 1.8rem;
+            color: black;
+            border: 2px solid transparent;
+            font-weight: 600;
+            transition: 0.3s ease-in-out;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--main-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-color);
+            padding: 50px 0;
+        }
+
+        .footer .social-icons {
+            text-align: center;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid var(--main-color);
+            border-radius: 50%;
+            color: var(--main-color);
+            margin: 3rem 0.5rem;
+            transition: 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--text-color);
+            background-color: var(--main-color);
+            transform: scale(1.2) translateY(-5px);
+            box-shadow: 0 0 25px var(--main-color);
+        }
+
+        .footer ul {
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .footer ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .footer ul li a {
+            color: white;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s ease-in-out;
+        }
+
+        .footer ul li a:hover {
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        .footer .copyright {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 16px;
+        }
+
+        /* Mobile Responsive */
+        @media(max-width: 1024px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 50%;
+                padding: 1rem 3rem;
+                background-color: rgba(0, 0, 0, 0.8);
+                border-left: 2px solid var(--main-color);
+                border-bottom: 2px solid var(--main-color);
+                border-bottom-left-radius: 2rem;
+                display: none;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+                color: var(--text-color);
+            }
+
+            .navbar.active {
+                display: block;
+            }
+
+            .project-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .project-image video {
+                max-width: 85%;
+            }
+        }
+
+        @media(max-width: 900px) {
+            .project-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Glimmering Particle Background -->
+    <div id="particles-js"></div>
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            Romel <span>Suarez</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects" class="active">Projects</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#resume">Resume</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="project-details">
+        <div class="project-container">
+
+            <!-- IMAGE LEFT -->
+            <div class="project-image">
+                <video autoplay muted loop playsinline>
+                    <source src="project1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- CONTENT RIGHT -->
+            <div class="project-content">
+                <h1>Tapsi - Creative Taxi Website Design for AI-Driven Service</h1>
+                <p>
+                    We are super excited to show you our latest project we developed for Tapsi!
+                    Please, check the website created by our team!
+                    Tapsi is the cutting-edge Taxi service, exclusively made for IT sector.
+                    Seamlessly catered to tech professionals' unique needs, Tapsi offers efficient and hassle-free transportation.
+                </p>
+
+                <h3>Tools Used:</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+
+                <h3>Features:</h3>
+                <ul>
+                    <li>Responsive design</li>
+                    <li>Clean UI/UX</li>
+                    <li>Fast and lightweight</li>
+                </ul>
+
+                <a href="index.html#projects" class="btn">← Back to Projects</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+        </div>
+
+        <ul class="list">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#about">About Me</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <p class="copyright">© Romel Suarez | All Rights Reserved</p>
+    </footer>
+
+    <!-- Load particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- All JavaScript in one place -->
+    <script>
+        // Mobile menu toggle
+        const menuIcon = document.querySelector('#menu-icon');
+        const navbar = document.querySelector('.navbar');
+
+        menuIcon.onclick = () => {
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        };
+
+        // Enhanced Glimmering Particles
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { 
+                    "value": 200,
+                    "density": { "enable": true, "value_area": 800 } 
+                },
+                "color": { 
+                    "value": ["#00ff51", "#00ff88", "#00ffaa", "#ffffff", "#88ffaa"]
+                },
+                "shape": { "type": "circle" },
+                "opacity": { 
+                    "value": 0.8,
+                    "random": true, 
+                    "anim": { 
+                        "enable": true, 
+                        "speed": 3,
+                        "opacity_min": 0.1,
+                        "sync": false 
+                    } 
+                },
+                "size": { 
+                    "value": 4,
+                    "random": true, 
+                    "anim": { 
+                        "enable": true, 
+                        "speed": 4,
+                        "size_min": 0.3,
+                        "sync": false 
+                    } 
+                },
+                "line_linked": { 
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00ff51",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5,
+                    "direction": "none", 
+                    "random": true, 
+                    "straight": false, 
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": { 
+                    "grab": { 
+                        "distance": 200,
+                        "line_linked": { "opacity": 0.8 } 
+                    }, 
+                    "push": { "particles_nb": 6 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
